@@ -1,0 +1,42 @@
+.containner {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.containner .form-confirm {
+    width: 90%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+    background: white;
+}
+
+.containner .form-confirm .button-confirm {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.containner .form-confirm .button-confirm button {
+    width: 48%;
+    height: 40px;
+    background: white;
+    border: none;
+    cursor: pointer;
+}
+
+.containner .form-confirm .button-confirm button:hover {
+    background: rgb(240, 240, 240);
+}
+.hide{
+    display: none;
+}
