@@ -169,3 +169,6 @@ export const getMode = () => {
     else if (nameMode == 'ba') return 2;
     else return 3;
 }
+export const openSettingFunc = ()=> {
+    execSync("gnome-control-center")
+}

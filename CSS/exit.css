@@ -1,0 +1,19 @@
+.wrap-btn-exit {
+    position: fixed;
+    top: 24px;
+    right: 12px;
+}
+
+.wrap-btn-exit button {
+    cursor: pointer;
+    border: none;
+}
+
+.wrap-btn-exit button img {
+    width: 30px;
+    height: 30px;
+}
+
+.wrap-btn-exit button img:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
