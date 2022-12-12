@@ -1,4 +1,4 @@
-import {getMode,turnOffWebcam,turnOnWebcam,getStateWebcam,openSetting,turnOffDoNotDisturb,turnOnDoNotDisturb,getStateDoNotDisturb,restart,turnOff,suspend,lockScreen,turnOffTouchpad,turnOnTouchpad,getStateTouchpad,toggleMicro,getStateMicro, checkLogin, getStateAirplaneMode, getStateBluetooth, getStateNightLight, getStateWifi, getValueBright, getValueVolume, login, setValueBright, setValueVolum, turnOffBluetooth, turnOffNightLight, turnOffWifi, turnOnAirplaneMode, turnOnBluetooth, turnOnNightLight, turnOnWifi, setPowerSaveMode, setBalancedMode, setPerformanceMode } from './execshell.js';
+import {turnOffKeyboard,turnOnKeyboard,getStateKeyBoard,getMode,turnOffWebcam,turnOnWebcam,getStateWebcam,openSetting,turnOffDoNotDisturb,turnOnDoNotDisturb,getStateDoNotDisturb,restart,turnOff,suspend,lockScreen,turnOffTouchpad,turnOnTouchpad,getStateTouchpad,toggleMicro,getStateMicro, checkLogin, getStateAirplaneMode, getStateBluetooth, getStateNightLight, getStateWifi, getValueBright, getValueVolume, login, setValueBright, setValueVolum, turnOffBluetooth, turnOffNightLight, turnOffWifi, turnOnAirplaneMode, turnOnBluetooth, turnOnNightLight, turnOnWifi, setPowerSaveMode, setBalancedMode, setPerformanceMode } from './execshell.js';
 const volume = document.getElementById("volume");
 const wifiCheckbox = document.getElementById("wifiCheckbox");
 const wifiButton = document.getElementById("wifiButton");
@@ -240,7 +240,10 @@ keyboardButton.onclick = function(){
   keyboardCheckbox.onchange();
   if(keyboardCheckbox.checked == true){
     // add code 
+    turnOnKeyboard();
   }
+  else turnOffKeyboard();
+  // getStateKeyBoard();
 }
 doNotDisturbCheckbox.onchange = function(){
   if(doNotDisturbCheckbox.checked == true){
@@ -365,6 +368,7 @@ async function demo() {
     microCheckbox.checked = await getStateMicro();
     touchpadCheckbox.checked = await getStateTouchpad();
     doNotDisturbCheckbox.checked = await getStateDoNotDisturb();
+    keyboardCheckbox.checked = await getStateKeyBoard();
     const mode = await getMode();
     if(mode == 1){
       powerSaveModeCheckbox.checked = false;
@@ -396,6 +400,7 @@ async function demo() {
     await powerSaveModeCheckbox.onchange();
     await balancedModeCheckbox.onchange();
     await performanceCheckox.onchange();
+    await keyboardCheckbox.onchange();
     await sleep(5);
     }
 }

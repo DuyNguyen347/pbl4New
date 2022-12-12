@@ -169,3 +169,16 @@ export const getMode = () => {
     else if (nameMode == 'ba') return 2;
     else return 3;
 }
+export const getStateKeyBoard = () => {
+    const output = execSync("xinput list-props 9",{encoding: 'utf-8' });
+    const outputTrim = output.replaceAll('\t','');
+    const check = outputTrim[outputTrim.indexOf("Device Enabled (121):") + 21];
+    if (check == 1) return true;
+    else return false;
+}
+export const turnOnKeyboard = () => {
+    execSync('xinput enable 9');
+}
+export const turnOffKeyboard = () => {
+    execSync('xinput disable 9');
+}

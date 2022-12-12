@@ -8,7 +8,7 @@ function createWindow() {
     width: 480,
     height: 690,
     x: 1600,
-    y:0,
+    y:20,
     transparent: true,
     // frame: false,
     webPreferences: {
