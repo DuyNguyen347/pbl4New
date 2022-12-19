@@ -2,221 +2,217 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="./spinner.css">
-    <link href="./styles.css" rel="stylesheet">
-    <link rel="stylesheet" href="./dialog.css">
+    <link rel="stylesheet" href="./CSS/spinner.css">
+    <link rel="stylesheet" href="./CSS/styles.css">
+    <link rel="stylesheet" href="./CSS/dialog.css">
+    <link rel="stylesheet" href="./CSS/button.css">
+    <link rel="stylesheet" href="./CSS/exit.css">
+    <link rel="stylesheet" href="./CSS/expand.css">
+
     <title>PBL4 1.3</title>
   </head>
   <body > 
-    <div class="containner-login">
-        <div class="form-login">
-            <div class="user">
-                <img src="./img/user.png" alt="">
+    <div class="super-wrap thugon">
+        <div class="containner-login ">
+            <div class="form-login">
+                <div class="user">
+                    <img src="./img/user.png" alt="">
+                </div>
+                <div class="input">
+                    <input type="password" placeholder="Password" id="password">
+                </div>
+                <div class="button-login">
+                    <button id="button-cancel">Cancel</button>
+                    <button id="button-submit">Login</button>
+                </div>
             </div>
-            <div class="input">
-                <input type="password" placeholder="Password" id="password">
+        </div>
+        <div class="contain">
+            <div class="button_grid">
+                <div class="box_button">
+                    <button class="btn5 btn5-hover" id="wifiButton">
+                        <img src="./img/wifi_light.png" alt="" class="img">
+                        <input type="checkbox" style="display: none;" id="wifiCheckbox">
+                    </button>
+                    <div class="box_content">
+                        <span class="button_content">Wifi</span>
+                    </div>
+                </div>
+                <div class="box_button">
+                    <button id="bluetoothButton" class="btn5 btn5-hover">
+                        <img src="./img/bluetooth_white.png" alt="" class="img">
+                        <input type="checkbox" style="display: none;" id="bluetoothCheckbox">
+                    </button>
+                    <div class="box_content">
+                        <span class="button_content">Bluetooth</span>
+                    </div>
+                </div>
+                <div class="box_button">
+                    <button class="btn5 btn5-hover" id="airplaneButton">
+                        <img src="./img/airplane_white.png" alt="" class="img">
+                        <input type="checkbox" style="display: none;" id="airplaneCheckbox">
+                    </button>
+                    <div class="box_content">
+                        <span class="button_content">Airplane mode</span>
+                    </div>
+                </div>
+                <div class="box_button">
+                    <button class="btn5 btn5-hover" id="nightLightButton">
+                        <img src="./img/night_white.png" alt="" class="img">
+                        <input type="checkbox" style="display: none;" id="nightLightCheckbox">
+                    </button>
+                    <div class="box_content">
+                        <span class="button_content">Night Light</span>
+                    </div>
+                </div>
+                <div class="box_button">
+                    <button class="btn5 btn5-hover" id="webcamButton">
+                        <img src="./img/webcam_white.png" alt="" class="img">
+                        <input type="checkbox" style="display: none;" id="webcamCheckbox">
+                    </button>
+                    <div class="box_content">
+                        <span class="button_content">Webcam</span>
+                    </div>
+                </div>
+                <div class="box_button">
+                    <button class="btn5 btn5-hover" id="microButton">
+                        <img src="./img/micro_white.png" alt="" class="img">
+                        <input type="checkbox" style="display: none;" id="microCheckbox">
+                    </button>
+                    <div class="box_content">
+                        <span class="button_content">Micro</span>
+                    </div>
+                </div>
+                <div class="box_button">
+                    <button class="btn5 btn5-hover" id="touchpadButton">
+                        <img src="./img/touchpad_white.png" alt="" class="img">
+                        <input type="checkbox" style="display: none;" id="touchpadCheckbox">
+                    </button>
+                    <div class="box_content">
+                        <span class="button_content">Touchpad</span>
+                    </div>
+                </div>
+                <div class="box_button">
+                    <button class="btn5 btn5-hover" id="keyboardButton">
+                        <img src="./img/keyboard_white.png" alt="" class="img">
+                        <input type="checkbox" style="display: none;" id="keyboardCheckbox">
+                    </button>
+                    <div class="box_content">
+                        <span class="button_content">Keyboard</span>
+                    </div>
+                </div>
+                <div class="box_button">
+                    <button class="btn5 btn5-hover" id="doNotDisturbButton">
+                        <img src="./img/notification_white.png" alt="" class="img">
+                        <input type="checkbox" style="display: none;" id="doNotDisturbCheckbox">
+                    </button>
+                    <div class="box_content">
+                        <span class="button_content">Do not disturb</span>
+                    </div>
+                </div>
+                <div class="box_button">
+                    <button class="three_mode_button btn5 btn5-hover" id="powerSaveMode">
+                        <img src="./img/battary_white.png" alt="" class="img">
+                        <input type="checkbox" style="display: none;" id="powerSaveModeCheckbox">
+                    </button>
+                    <div class="box_content">
+                        <span class="button_content">Battery save</span>
+                    </div>
+                </div>
+                <div class="box_button">
+                    <button class="three_mode_button btn5 btn5-hover" id="balancedMode">
+                        <img src="./img/balance_white.png" alt="" class="img">
+                        <input type="checkbox" style="display: none;" id="balancedModeCheckbox">
+                    </button>
+                    <div class="box_content">
+                        <span class="button_content">Balance</span>
+                    </div>
+                </div>
+                <div class="box_button">
+                    <button class="three_mode_button btn5 btn5-hover " id="performanceMode">
+                        <img src="./img/power_white.png" alt="" class="img">
+                        <input type="checkbox" style="display: none;" id="performanceCheckbox">
+                    </button>
+                    <div class="box_content">
+                        <span class="button_content">Power Mode</span>
+                    </div>
+                </div>
             </div>
-            <div class="button-login">
-                <button id="button-cancel">Cancel</button>
-                <button id="button-submit">Login</button>
+            <!-- <div class="three_mode">
+            
+            </div> -->
+            <div class="slider">
+                <div class="wrap wrap-volume">
+                    <i class="icon volumeIcon"><img id="volumeIcon" src="./img/volume-mute-outline.svg" width="22"
+                            height="22"></i>
+                    <input type="range" id="volume" name="volume" min="0" max="100" step="1">
+                    <div class="label">
+                        <h4>Volume</h4>
+                    </div>
+                    <!-- <div class="progress" id="progressVolume" style="--value:0"></div> -->
+                </div>
+                <div class="wrap wrap-brightness">
+                    <i class="icon brightnessIcon"><img id="brightnessIcon" src="./img/sunny-outline.svg" width="22"
+                            height="22"></i>
+                    <input type="range" id="brightness" name="brightness" min="0" max="100">
+                    <div class="label">
+                        <h4>Brightness</h4>
+                    </div>
+                    <!-- <div class="progress" id="progressBright" style="--value:0"></div> -->
+                </div>
+            </div>
+            <div class="footer">
+                <div class="battery center inlineBlock" style="margin-top: 10px;">
+                    <img src="./img/battery.png" alt="" class="img" id="img_battery">
+                    <h5 id="percent_battery" class="test" style="padding-left: 5px;">10%</h5>
+                </div>
+                <div class="setting">
+                    <img id="setting" src="./img/setting_bnlack.png" alt="" class="img">
+                    <img src="./img/sleep_black.png" alt="" class="img">
+                    <img src="./img/restart.png" alt="" class="img">
+                    <img id="shutdown" src="./img/shudown.png" alt="" class="img">
+                </div>
+            </div>
+            <div class="wrap-btn-exit">
+                <button id="btn-exit">
+                    <img src="./img/close.png" alt="">
+                </button>
+            </div>
+            <div class="wrap-btn-expand" id="btn-expand">
+                <button >
+                    <img src="./img/down.png" alt="">
+                </button>
+            </div>
+        </div>
+        <div class="container container-spinner hide" id="spinner" >
+            <div class="lds-spinner">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="containner hide" id="containner-confirm" >
+            <div class="form-confirm">
+                <div class="button-confirm">
+                    <button id="button-confirm-cancel">Cancel</button>
+                    <button id="button-confirm-ok">OK</button>
+                </div>
             </div>
         </div>
     </div>
-    <div class="contain">
-        <div class="button_grid">
-            <div class="box_button">
-                <button class="btn5 btn5-hover" id="wifiButton">
-                    <img src="./img/wifi_light.png" alt="" class="img">
-                    <input type="checkbox" style="display: none;" id="wifiCheckbox">
-                </button>
-                <div class="box_content">
-                    <span class="button_content">Wifi</span>
-                </div>
-            </div>
-            <div class="box_button">
-                <button id="bluetoothButton" class="btn5 btn5-hover">
-                    <img src="./img/bluetooth_white.png" alt="" class="img">
-                    <input type="checkbox" style="display: none;" id="bluetoothCheckbox">
-                </button>
-                <div class="box_content">
-                    <span class="button_content">Bluetooth</span>
-                </div>
-            </div>
-            <div class="box_button">
-                <button class="btn5 btn5-hover" id="airplaneButton">
-                    <img src="./img/airplane_white.png" alt="" class="img">
-                    <input type="checkbox" style="display: none;" id="airplaneCheckbox">
-                </button>
-                <div class="box_content">
-                    <span class="button_content">Airplane mode</span>
-                </div>
-            </div>
-            <div class="box_button">
-                <button class="btn5 btn5-hover" id="nightLightButton">
-                    <img src="./img/night_white.png" alt="" class="img">
-                    <input type="checkbox" style="display: none;" id="nightLightCheckbox">
-                </button>
-                <div class="box_content">
-                    <span class="button_content">Night Light</span>
-                </div>
-            </div>
-            <div class="box_button">
-                <button class="btn5 btn5-hover" id="webcamButton">
-                    <img src="./img/webcam_white.png" alt="" class="img">
-                    <input type="checkbox" style="display: none;" id="webcamCheckbox">
-                </button>
-                <div class="box_content">
-                    <span class="button_content">Webcam</span>
-                </div>
-            </div>
-            <div class="box_button">
-                <button class="btn5 btn5-hover" id="microButton">
-                    <img src="./img/micro_white.png" alt="" class="img">
-                    <input type="checkbox" style="display: none;" id="microCheckbox">
-                </button>
-                <div class="box_content">
-                    <span class="button_content">Micro</span>
-                </div>
-            </div>
-            <div class="box_button">
-                <button class="btn5 btn5-hover" id="touchpadButton">
-                    <img src="./img/touchpad_white.png" alt="" class="img">
-                    <input type="checkbox" style="display: none;" id="touchpadCheckbox">
-                </button>
-                <div class="box_content">
-                    <span class="button_content">Touchpad</span>
-                </div>
-            </div>
-            <div class="box_button">
-                <button class="btn5 btn5-hover" id="keyboardButton">
-                    <img src="./img/keyboard_white.png" alt="" class="img">
-                    <input type="checkbox" style="display: none;" id="keyboardCheckbox">
-                </button>
-                <div class="box_content">
-                    <span class="button_content">Keyboard</span>
-                </div>
-            </div>
-            <div class="box_button">
-                <button class="btn5 btn5-hover" id="doNotDisturbButton">
-                    <img src="./img/notification_white.png" alt="" class="img">
-                    <input type="checkbox" style="display: none;" id="doNotDisturbCheckbox">
-                </button>
-                <div class="box_content">
-                    <span class="button_content">Do not disturb</span>
-                </div>
-            </div>
-            <div class="box_button">
-                <button class="three_mode_button btn5 btn5-hover" id="powerSaveMode">
-                    <img src="./img/battary_white.png" alt="" class="img">
-                    <input type="checkbox" style="display: none;" id="powerSaveModeCheckbox">
-                </button>
-                <div class="box_content">
-                    <span class="button_content">Battery save</span>
-                </div>
-            </div>
-            <div class="box_button">
-                <button class="three_mode_button btn5 btn5-hover" id="balancedMode">
-                    <img src="./img/balance_white.png" alt="" class="img">
-                    <input type="checkbox" style="display: none;" id="balancedModeCheckbox">
-                </button>
-                <div class="box_content">
-                    <span class="button_content">Balance</span>
-                </div>
-            </div>
-            <div class="box_button">
-                <button class="three_mode_button btn5 btn5-hover " id="performanceMode">
-                    <img src="./img/power_white.png" alt="" class="img">
-                    <input type="checkbox" style="display: none;" id="performanceCheckbox">
-                </button>
-                <div class="box_content">
-                    <span class="button_content">Power Mode</span>
-                </div>
-            </div>
-        </div>
-        <!-- <div class="three_mode">
-         
-        </div> -->
-        <div class="slider">
-            <div class="wrap wrap-volume">
-                <i class="icon volumeIcon"><img id="volumeIcon" src="./img/volume-mute-outline.svg" width="22"
-                        height="22"></i>
-                <input type="range" id="volume" name="volume" min="0" max="100" step="1">
-                <div class="label">
-                    <h4>Volume</h4>
-                </div>
-                <!-- <div class="progress" id="progressVolume" style="--value:0"></div> -->
-            </div>
-            <div class="wrap wrap-brightness">
-                <i class="icon brightnessIcon"><img id="brightnessIcon" src="./img/sunny-outline.svg" width="22"
-                        height="22"></i>
-                <input type="range" id="brightness" name="brightness" min="0" max="100">
-                <div class="label">
-                    <h4>Brightness</h4>
-                </div>
-                <!-- <div class="progress" id="progressBright" style="--value:0"></div> -->
-            </div>
-        </div>
-        <div class="footer">
-            <div class="battery">
-                <img src="./img/battery.png" alt="" class="img" id="img_battery">
-                <span id="percent_battery"></span>
-            </div>
-            <div class="setting">
-                <img src="./img/setting_bnlack.png" alt="" class="img">
-                <img src="./img/sleep_black.png" alt="" class="img">
-                <img src="./img/restart.png" alt="" class="img">
-                <img src="./img/shudown.png" alt="" class="img">
-            </div>
-        </div>
-        <div class="wrap-btn-exit">
-            <button id="btn-exit">
-                <img src="./img/exit.png" alt="">
-            </button>
-        </div>
-    </div>
-    <div class="container container-spinner hide" id="spinner" >
-        <div class="lds-spinner">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-    </div>
-    <div class="containner hide" >
-        <div class="form-confirm">
-            <div class="button-confirm">
-                <button id="button-">Cancel</button>
-                <button id="button-">OK</button>
-            </div>
-        </div>
-    </div>
-    <script type="module" src="./script.js"></script>
-    <script type="module" src="./execshell.js"></script>
-    <script>
-      // const darkCheckbox = document.getElementById("darkCheckbox");
-      // const r = document.querySelector(':root');
-      // const rs = getComputedStyle(r);
-      // darkCheckbox.onchange = ()=>{
-      //   if(darkCheckbox.checked){
-      //     r.style.setProperty('--background-color',rs.getPropertyValue('--dark-background'));
-      //     r.style.setProperty('--background-hover', rs.getPropertyValue('--dark-background-hover'));
-      //     r.style.setProperty('--text-color', rs.getPropertyValue('--dark-colortext'));
-      //   }
-      //   else{
-      //     r.style.setProperty('--background-color', rs.getPropertyValue('--light-background'));
-      //     r.style.setProperty('--background-hover', rs.getPropertyValue('--light-background-hover'));
-      //     r.style.setProperty('--text-color', rs.getPropertyValue('--light-colortext'));
-      //   }
-      // }
-    </script>
+<!-- end change -->
+    <script type="module" src="./JS/expand.js"></script>
+    <script type="module" src="./JS/script.js"></script>
+    <script type="module" src="./JS/execshell.js"></script>
+    
   </body>
 </html>

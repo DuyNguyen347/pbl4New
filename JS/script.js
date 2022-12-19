@@ -33,24 +33,24 @@ const balancedModeCheckbox = document.getElementById("balancedModeCheckbox");
 const performanceCheckox = document.getElementById("performanceCheckbox");
 const percent_battery = document.getElementById("percent_battery"); 
 const img_battery = document.getElementById("img_battery");
-  volume.oninput = ()=>{  
-    if(volume.value>=90){
-      volumeIcon.setAttribute("src","./img/volume-high-outline.svg")
-    }
-    else if(volume.value>=50){
-      volumeIcon.setAttribute("src","./img/volume-medium-outline.svg")
-    }
-    else if(volume.value>0){
-      volumeIcon.setAttribute("src","./img/volume-low-outline.svg")
-    }
-    else {
-      volumeIcon.setAttribute("src","./img/volume-mute-outline.svg")
-    }
-    setValueVolum(volume.value);
-  }
-  brightness.oninput = function() {
-    setValueBright(brightness.value);
-  }
+  // volume.oninput = ()=>{  
+  //   if(volume.value>=90){
+  //     volumeIcon.setAttribute("src","./img/volume-high-outline.svg")
+  //   }
+  //   else if(volume.value>=50){
+  //     volumeIcon.setAttribute("src","./img/volume-medium-outline.svg")
+  //   }
+  //   else if(volume.value>0){
+  //     volumeIcon.setAttribute("src","./img/volume-low-outline.svg")
+  //   }
+  //   else {
+  //     volumeIcon.setAttribute("src","./img/volume-mute-outline.svg")
+  //   }
+  //   setValueVolum(volume.value);
+  // }
+  // brightness.oninput = function() {
+  //   setValueBright(brightness.value);
+  // }
 //   brightness.oninput = ()=>{
 //     document.getElementById("progressBright").setAttribute("style", "--value:" + brightness.value);
 //     setValueBright(brightness.value);
@@ -68,25 +68,28 @@ const img_battery = document.getElementById("img_battery");
   //   console.log("nguyen duc duy");
   //   alert("checkbox");
   // }
+const buttonConfirmCancel = document.getElementById("button-confirm-cancel");
+const buttonConfirmOk = document.getElementById("button-confirm-ok");
+const confirm = document.getElementById("containner-confirm");
   
-  // wrapWifi.onclick = function(){
-  //   wifiCheckbox.checked = !wifiCheckbox.checked;
-  // }
-  // wrapBluetooth.onclick = function(){
-  //   bluetoothCheckbox.checked = !bluetoothCheckbox.checked;
-  // }
-// window.onload = function () {
-//   const password = "68709502";
-//   login(password);
-//   volume.value = getValueVolume();
-//   brightness.value = getValueBright();
-//     wifiCheckbox.checked = getStateWifi();
-//     bluetoothCheckbox.checked = getStateBluetooth();
-//     brightness.oninput();
-//     volume.oninput();
-//     bluetoothCheckbox.onchange();
-//     wifiCheckbox.onchange();
-//   }
+volume.oninput = () => {  
+  if(volume.value>=90){
+    volumeIcon.setAttribute("src","./img/volume-high-outline.svg")
+  }
+  else if(volume.value>=50){
+    volumeIcon.setAttribute("src","./img/volume-medium-outline.svg")
+  }
+  else if(volume.value>0){
+    volumeIcon.setAttribute("src","./img/volume-low-outline.svg")
+  }
+  else {
+    volumeIcon.setAttribute("src","./img/volume-mute-outline.svg")
+  }
+  setValueVolum(volume.value);
+}
+brightness.oninput = () => {
+  setValueBright(brightness.value);
+}
 wifiCheckbox.onchange = ()=>{
   if(wifiCheckbox.checked == true){
     wifiButton.classList.remove("none-active");
@@ -348,13 +351,25 @@ BtnLogin.onclick = async function () {
     password.value = "";
   }
 }
-
+document.getElementById("shutdown").onclick = () => {
+  confirm.classList.remove("hide")
+}
+document.getElementById("setting").onclick = () => {
+  openSettingFunc();
+}
+buttonConfirmCancel.onclick = () => {
+  confirm.classList.add("hide")
+}
+buttonConfirmOk.onclick = () => {
+  confirm.classList.add("hide")
+}
 window.onload = function () {
   if (checkLogin()) {
     formLogin.classList.add("hide");
     demo();
     }
 }
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -391,7 +406,7 @@ async function demo() {
     }
     percent_battery.innerText = getPercentBattery();
     if(checkChargingBattery()){
-      img_battery.setAttribute("src","./img/battery_charging.gif")
+      img_battery.setAttribute("src","./img/battery_charging.png")
     }
     else{
       var percent = parseInt(getPercentBattery().replace('%',''));

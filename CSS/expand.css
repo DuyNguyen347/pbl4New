@@ -1,0 +1,33 @@
+.wrap-btn-expand {
+    transition: 0.5s;
+    position: absolute;
+    bottom: 32px;
+    margin: auto;
+    right: 50%;
+    border-radius: 50%;
+    border: 1px #4481eb,;
+    transform: rotate(180deg);
+}
+
+.wrap-btn-expand button {
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    background: white;
+    width: 32px;
+    height: 32px;
+}
+
+.wrap-btn-expand button img {
+    margin-top: 4px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+.wrap-btn-expand:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+.super-wrap.thugon .wrap-btn-expand {
+    transform: rotate(0deg);
+}
