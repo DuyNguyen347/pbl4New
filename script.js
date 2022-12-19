@@ -1,4 +1,4 @@
-import {turnOffKeyboard,turnOnKeyboard,getStateKeyBoard,getMode,turnOffWebcam,turnOnWebcam,getStateWebcam,openSetting,turnOffDoNotDisturb,turnOnDoNotDisturb,getStateDoNotDisturb,restart,turnOff,suspend,lockScreen,turnOffTouchpad,turnOnTouchpad,getStateTouchpad,toggleMicro,getStateMicro, checkLogin, getStateAirplaneMode, getStateBluetooth, getStateNightLight, getStateWifi, getValueBright, getValueVolume, login, setValueBright, setValueVolum, turnOffBluetooth, turnOffNightLight, turnOffWifi, turnOnAirplaneMode, turnOnBluetooth, turnOnNightLight, turnOnWifi, setPowerSaveMode, setBalancedMode, setPerformanceMode } from './execshell.js';
+import {getPercentBattery,checkChargingBattery,turnOffKeyboard,turnOnKeyboard,getStateKeyBoard,getMode,turnOffWebcam,turnOnWebcam,getStateWebcam,openSetting,turnOffDoNotDisturb,turnOnDoNotDisturb,getStateDoNotDisturb,restart,turnOff,suspend,lockScreen,turnOffTouchpad,turnOnTouchpad,getStateTouchpad,toggleMicro,getStateMicro, checkLogin, getStateAirplaneMode, getStateBluetooth, getStateNightLight, getStateWifi, getValueBright, getValueVolume, login, setValueBright, setValueVolum, turnOffBluetooth, turnOffNightLight, turnOffWifi, turnOnAirplaneMode, turnOnBluetooth, turnOnNightLight, turnOnWifi, setPowerSaveMode, setBalancedMode, setPerformanceMode } from './execshell.js';
 const volume = document.getElementById("volume");
 const wifiCheckbox = document.getElementById("wifiCheckbox");
 const wifiButton = document.getElementById("wifiButton");
@@ -31,6 +31,8 @@ const performanceMode = document.getElementById("performanceMode");
 const powerSaveModeCheckbox = document.getElementById("powerSaveModeCheckbox");
 const balancedModeCheckbox = document.getElementById("balancedModeCheckbox");
 const performanceCheckox = document.getElementById("performanceCheckbox");
+const percent_battery = document.getElementById("percent_battery"); 
+const img_battery = document.getElementById("img_battery");
   volume.oninput = ()=>{  
     if(volume.value>=90){
       volumeIcon.setAttribute("src","./img/volume-high-outline.svg")
@@ -127,6 +129,7 @@ bluetoothButton.onclick = function(){
   else{
     turnOffBluetooth();
   }
+  // nhap
 }
 airplaneCheckbox.onchange = () => {
   if(airplaneCheckbox.checked == true){
@@ -385,6 +388,16 @@ async function demo() {
       powerSaveModeCheckbox.checked = true;
       balancedModeCheckbox.checked = false;
       performanceCheckox.checked = false;
+    }
+    percent_battery.innerText = getPercentBattery();
+    if(checkChargingBattery()){
+      img_battery.setAttribute("src","./img/battery_charging.gif")
+    }
+    else{
+      var percent = parseInt(getPercentBattery().replace('%',''));
+      if(percent > 80) img_battery.setAttribute("src","./img/battery.png");
+      else if(percent > 20 && percent <= 80) img_battery.setAttribute("src","./img/battery-medium.png");
+      else img_battery.setAttribute("src","./img/battery_low.png");
     }
     // set
     await brightness.oninput();

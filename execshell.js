@@ -182,3 +182,14 @@ export const turnOnKeyboard = () => {
 export const turnOffKeyboard = () => {
     execSync('xinput disable 9');
 }
+export const checkChargingBattery = () => {
+    const output = execSync("upower -i $(upower -e | grep 'BAT') | grep -E \"state|to\ full|percentage\"",{encoding: 'utf-8' }).replaceAll(' ','');
+    const check = output[output.indexOf("state") + 6] + output[output.indexOf("state") + 7];
+    if(check == "ch") return true;
+    else return false;
+}
+export const getPercentBattery = () => {
+    const output = execSync("upower -i $(upower -e | grep 'BAT') | grep -E \"state|to\ full|percentage\"",{encoding: 'utf-8' }).replaceAll('\t','');
+    const percentage = output.substring(output.indexOf("percentage:")+11).trim();
+    return percentage;
+}
