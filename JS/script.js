@@ -33,6 +33,7 @@ const balancedModeCheckbox = document.getElementById("balancedModeCheckbox");
 const performanceCheckox = document.getElementById("performanceCheckbox");
 const percent_battery = document.getElementById("percent_battery"); 
 const img_battery = document.getElementById("img_battery");
+const ContentConfirm = document.getElementsByClassName("content-confirm")[0];
   // volume.oninput = ()=>{  
   //   if(volume.value>=90){
   //     volumeIcon.setAttribute("src","./img/volume-high-outline.svg")
@@ -351,7 +352,33 @@ BtnLogin.onclick = async function () {
     password.value = "";
   }
 }
+password.onkeydown = (e) => {
+  if(e.keyCode==13){
+    BtnLogin.onclick()
+  }
+} 
 document.getElementById("shutdown").onclick = () => {
+  ContentConfirm.innerHTML = "Are you sure shutdown?"
+  buttonConfirmOk.onclick = () => {
+    turnOff()
+    confirm.classList.add("hide")  
+  }
+  confirm.classList.remove("hide")
+}
+document.getElementById("restart").onclick = () => {
+  ContentConfirm.innerHTML = "Are you sure reboot?"
+  buttonConfirmOk.onclick = () => {
+    restart()
+    confirm.classList.add("hide")  
+  }
+  confirm.classList.remove("hide")
+}
+document.getElementById("sleep").onclick = () => {
+  ContentConfirm.innerHTML = "Are you sure sleep?"
+  buttonConfirmOk.onclick = () => {
+    suspend()
+    confirm.classList.add("hide")  
+  }
   confirm.classList.remove("hide")
 }
 document.getElementById("setting").onclick = () => {
@@ -360,9 +387,7 @@ document.getElementById("setting").onclick = () => {
 buttonConfirmCancel.onclick = () => {
   confirm.classList.add("hide")
 }
-buttonConfirmOk.onclick = () => {
-  confirm.classList.add("hide")
-}
+
 window.onload = function () {
   if (checkLogin()) {
     formLogin.classList.add("hide");
