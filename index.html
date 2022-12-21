@@ -13,7 +13,7 @@
   </head>
   <body > 
     <div class="super-wrap thugon">
-        <div class="containner-login ">
+        <div class="containner-login">
             <div class="form-login">
                 <div class="user">
                     <img src="./img/user.png" alt="">
@@ -162,14 +162,14 @@
                 </div>
             </div>
             <div class="footer">
-                <div class="battery">
-                    <img src="./img/battery.png" alt="" class="img">
-                    <span>75%</span>
+                <div class="battery center inlineBlock" style="margin-top: 10px;">
+                    <img src="./img/battery.png" alt="" class="img" id="img_battery">
+                    <h5 id="percent_battery" class="test" style="padding-left: 5px;">10%</h5>
                 </div>
                 <div class="setting">
                     <img id="setting" src="./img/setting_bnlack.png" alt="" class="img">
-                    <img src="./img/sleep_black.png" alt="" class="img">
-                    <img src="./img/restart.png" alt="" class="img">
+                    <img id="sleep" src="./img/sleep_black.png" alt="" class="img">
+                    <img id="restart" src="./img/restart.png" alt="" class="img">
                     <img id="shutdown" src="./img/shudown.png" alt="" class="img">
                 </div>
             </div>
@@ -202,6 +202,7 @@
         </div>
         <div class="containner hide" id="containner-confirm" >
             <div class="form-confirm">
+                <div class="content-confirm">Bạn có chắc muốn tắt máy?</div>
                 <div class="button-confirm">
                     <button id="button-confirm-cancel">Cancel</button>
                     <button id="button-confirm-ok">OK</button>
@@ -209,6 +210,8 @@
             </div>
         </div>
     </div>
+<!-- end change -->
+
     <script type="module" src="./JS/expand.js"></script>
     <script type="module" src="./JS/script.js"></script>
     <script type="module" src="./JS/execshell.js"></script>

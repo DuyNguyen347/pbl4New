@@ -1,4 +1,4 @@
-import {getMode,turnOffWebcam,turnOnWebcam,getStateWebcam,openSetting,turnOffDoNotDisturb,turnOnDoNotDisturb,getStateDoNotDisturb,restart,turnOff,suspend,lockScreen,turnOffTouchpad,turnOnTouchpad,getStateTouchpad,toggleMicro,getStateMicro, checkLogin, getStateAirplaneMode, getStateBluetooth, getStateNightLight, getStateWifi, getValueBright, getValueVolume, login, setValueBright, setValueVolum, turnOffBluetooth, turnOffNightLight, turnOffWifi, turnOnAirplaneMode, turnOnBluetooth, turnOnNightLight, turnOnWifi, setPowerSaveMode, setBalancedMode, setPerformanceMode, openSettingFunc } from './execshell.js';
+import {getPercentBattery,checkChargingBattery,turnOffKeyboard,turnOnKeyboard,getStateKeyBoard,getMode,turnOffWebcam,turnOnWebcam,getStateWebcam,openSettingFunc,turnOffDoNotDisturb,turnOnDoNotDisturb,getStateDoNotDisturb,restart,turnOff,suspend,lockScreen,turnOffTouchpad,turnOnTouchpad,getStateTouchpad,toggleMicro,getStateMicro, checkLogin, getStateAirplaneMode, getStateBluetooth, getStateNightLight, getStateWifi, getValueBright, getValueVolume, login, setValueBright, setValueVolum, turnOffBluetooth, turnOffNightLight, turnOffWifi, turnOnAirplaneMode, turnOnBluetooth, turnOnNightLight, turnOnWifi, setPowerSaveMode, setBalancedMode, setPerformanceMode } from './execshell.js';
 const volume = document.getElementById("volume");
 const wifiCheckbox = document.getElementById("wifiCheckbox");
 const wifiButton = document.getElementById("wifiButton");
@@ -31,6 +31,44 @@ const performanceMode = document.getElementById("performanceMode");
 const powerSaveModeCheckbox = document.getElementById("powerSaveModeCheckbox");
 const balancedModeCheckbox = document.getElementById("balancedModeCheckbox");
 const performanceCheckox = document.getElementById("performanceCheckbox");
+const percent_battery = document.getElementById("percent_battery"); 
+const img_battery = document.getElementById("img_battery");
+const ContentConfirm = document.getElementsByClassName("content-confirm")[0];
+  // volume.oninput = ()=>{  
+  //   if(volume.value>=90){
+  //     volumeIcon.setAttribute("src","./img/volume-high-outline.svg")
+  //   }
+  //   else if(volume.value>=50){
+  //     volumeIcon.setAttribute("src","./img/volume-medium-outline.svg")
+  //   }
+  //   else if(volume.value>0){
+  //     volumeIcon.setAttribute("src","./img/volume-low-outline.svg")
+  //   }
+  //   else {
+  //     volumeIcon.setAttribute("src","./img/volume-mute-outline.svg")
+  //   }
+  //   setValueVolum(volume.value);
+  // }
+  // brightness.oninput = function() {
+  //   setValueBright(brightness.value);
+  // }
+//   brightness.oninput = ()=>{
+//     document.getElementById("progressBright").setAttribute("style", "--value:" + brightness.value);
+//     setValueBright(brightness.value);
+//   }
+//   bluetoothCheckbox.onchange = function(){
+//     if (bluetoothCheckbox.checked == true) {
+//       turnOnBluetooth();
+//       wrapBluetooth.classList.remove("btnDisable");
+//     } else {
+//       turnOffBluetooth();
+//       wrapBluetooth.classList.add("btnDisable");
+//     }
+//   }
+  // wifiCheckbox.onchange = function(){
+  //   console.log("nguyen duc duy");
+  //   alert("checkbox");
+  // }
 const buttonConfirmCancel = document.getElementById("button-confirm-cancel");
 const buttonConfirmOk = document.getElementById("button-confirm-ok");
 const confirm = document.getElementById("containner-confirm");
@@ -95,6 +133,7 @@ bluetoothButton.onclick = function(){
   else{
     turnOffBluetooth();
   }
+  // nhap
 }
 airplaneCheckbox.onchange = () => {
   if(airplaneCheckbox.checked == true){
@@ -208,7 +247,10 @@ keyboardButton.onclick = function(){
   keyboardCheckbox.onchange();
   if(keyboardCheckbox.checked == true){
     // add code 
+    turnOnKeyboard();
   }
+  else turnOffKeyboard();
+  // getStateKeyBoard();
 }
 doNotDisturbCheckbox.onchange = function(){
   if(doNotDisturbCheckbox.checked == true){
@@ -310,7 +352,36 @@ BtnLogin.onclick = async function () {
     password.value = "";
   }
 }
+password.onkeydown = (e) => {
+  if(e.keyCode==13){
+    BtnLogin.onclick()
+  }
+} 
 document.getElementById("shutdown").onclick = () => {
+  ContentConfirm.innerHTML = "Are you sure shutdown?"
+  buttonConfirmOk.onclick = () => {
+    window.closeWindow()
+    turnOff()
+    confirm.classList.add("hide")  
+  }
+  confirm.classList.remove("hide")
+}
+document.getElementById("restart").onclick = () => {
+  ContentConfirm.innerHTML = "Are you sure reboot?"
+  buttonConfirmOk.onclick = () => {
+    window.closeWindow()
+    restart()
+    confirm.classList.add("hide")  
+  }
+  confirm.classList.remove("hide")
+}
+document.getElementById("sleep").onclick = () => {
+  ContentConfirm.innerHTML = "Are you sure sleep?"
+  buttonConfirmOk.onclick = () => {
+    window.closeWindow()
+    suspend()
+    confirm.classList.add("hide")  
+  }
   confirm.classList.remove("hide")
 }
 document.getElementById("setting").onclick = () => {
@@ -319,9 +390,7 @@ document.getElementById("setting").onclick = () => {
 buttonConfirmCancel.onclick = () => {
   confirm.classList.add("hide")
 }
-buttonConfirmOk.onclick = () => {
-  confirm.classList.add("hide")
-}
+
 window.onload = function () {
   if (checkLogin()) {
     formLogin.classList.add("hide");
@@ -345,6 +414,7 @@ async function demo() {
     microCheckbox.checked = await getStateMicro();
     touchpadCheckbox.checked = await getStateTouchpad();
     doNotDisturbCheckbox.checked = await getStateDoNotDisturb();
+    keyboardCheckbox.checked = await getStateKeyBoard();
     const mode = await getMode();
     if(mode == 1){
       powerSaveModeCheckbox.checked = false;
@@ -362,6 +432,16 @@ async function demo() {
       balancedModeCheckbox.checked = false;
       performanceCheckox.checked = false;
     }
+    percent_battery.innerText = getPercentBattery();
+    if(checkChargingBattery()){
+      img_battery.setAttribute("src","./img/battery_charging.png")
+    }
+    else{
+      var percent = parseInt(getPercentBattery().replace('%',''));
+      if(percent > 80) img_battery.setAttribute("src","./img/battery.png");
+      else if(percent > 20 && percent <= 80) img_battery.setAttribute("src","./img/battery-medium.png");
+      else img_battery.setAttribute("src","./img/battery_low.png");
+    }
     // set
     await brightness.oninput();
     await volume.oninput();
@@ -376,6 +456,7 @@ async function demo() {
     await powerSaveModeCheckbox.onchange();
     await balancedModeCheckbox.onchange();
     await performanceCheckox.onchange();
+    await keyboardCheckbox.onchange();
     await sleep(5);
     }
 }

@@ -8,7 +8,8 @@ function createWindow() {
     width: 480,
     height: 440,
     x: 1600,
-    y:0,
+    y:20,
+    resizable: false,
     transparent: true,
     frame: false,
     webPreferences: {
@@ -45,9 +46,11 @@ ipcMain.on("window-all-closed", function () {
   app.quit()
 })
 ipcMain.on("thugon", function () {
+  mainWindow.resizable = true
   if (mainWindow.getSize()[1] == 440)
     mainWindow.setSize(480, 700)
   else mainWindow.setSize(480, 440)
+  mainWindow.resizable = false
 })
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.

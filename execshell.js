@@ -170,7 +170,7 @@ export const getMode = () => {
     else return 3;
 }
 export const getStateKeyBoard = () => {
-    const output = execSync("xinput list-props 9 2>/dev/null | grep -v \"running xinput against an Xwayland server. See the xinput man page for details.\"",{encoding: 'utf-8' });
+    const output = execSync('xinput list-props 9 2>/dev/null | grep -v \"running xinput against an Xwayland server. See the xinput man page for details.\"',{encoding: 'utf-8' });
     const outputTrim = output.replaceAll('\t','');
     const check = outputTrim[outputTrim.indexOf("Device Enabled (121):") + 21];
     if (check == 1) return true;
@@ -192,7 +192,4 @@ export const getPercentBattery = () => {
     const output = execSync("upower -i $(upower -e | grep 'BAT') | grep -E \"state|to\ full|percentage\"",{encoding: 'utf-8' }).replaceAll('\t','');
     const percentage = output.substring(output.indexOf("percentage:")+11).trim();
     return percentage;
-}
-export const openSettingFunc = ()=> {
-    execSync("gnome-control-center")
 }
