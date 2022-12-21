@@ -1,4 +1,4 @@
-import {getPercentBattery,checkChargingBattery,turnOffKeyboard,turnOnKeyboard,getStateKeyBoard,getMode,turnOffWebcam,turnOnWebcam,getStateWebcam,openSetting,turnOffDoNotDisturb,turnOnDoNotDisturb,getStateDoNotDisturb,restart,turnOff,suspend,lockScreen,turnOffTouchpad,turnOnTouchpad,getStateTouchpad,toggleMicro,getStateMicro, checkLogin, getStateAirplaneMode, getStateBluetooth, getStateNightLight, getStateWifi, getValueBright, getValueVolume, login, setValueBright, setValueVolum, turnOffBluetooth, turnOffNightLight, turnOffWifi, turnOnAirplaneMode, turnOnBluetooth, turnOnNightLight, turnOnWifi, setPowerSaveMode, setBalancedMode, setPerformanceMode } from './execshell.js';
+import {getPercentBattery,checkChargingBattery,turnOffKeyboard,turnOnKeyboard,getStateKeyBoard,getMode,turnOffWebcam,turnOnWebcam,getStateWebcam,openSettingFunc,turnOffDoNotDisturb,turnOnDoNotDisturb,getStateDoNotDisturb,restart,turnOff,suspend,lockScreen,turnOffTouchpad,turnOnTouchpad,getStateTouchpad,toggleMicro,getStateMicro, checkLogin, getStateAirplaneMode, getStateBluetooth, getStateNightLight, getStateWifi, getValueBright, getValueVolume, login, setValueBright, setValueVolum, turnOffBluetooth, turnOffNightLight, turnOffWifi, turnOnAirplaneMode, turnOnBluetooth, turnOnNightLight, turnOnWifi, setPowerSaveMode, setBalancedMode, setPerformanceMode } from './execshell.js';
 const volume = document.getElementById("volume");
 const wifiCheckbox = document.getElementById("wifiCheckbox");
 const wifiButton = document.getElementById("wifiButton");
@@ -360,6 +360,7 @@ password.onkeydown = (e) => {
 document.getElementById("shutdown").onclick = () => {
   ContentConfirm.innerHTML = "Are you sure shutdown?"
   buttonConfirmOk.onclick = () => {
+    window.closeWindow()
     turnOff()
     confirm.classList.add("hide")  
   }
@@ -368,6 +369,7 @@ document.getElementById("shutdown").onclick = () => {
 document.getElementById("restart").onclick = () => {
   ContentConfirm.innerHTML = "Are you sure reboot?"
   buttonConfirmOk.onclick = () => {
+    window.closeWindow()
     restart()
     confirm.classList.add("hide")  
   }
@@ -376,6 +378,7 @@ document.getElementById("restart").onclick = () => {
 document.getElementById("sleep").onclick = () => {
   ContentConfirm.innerHTML = "Are you sure sleep?"
   buttonConfirmOk.onclick = () => {
+    window.closeWindow()
     suspend()
     confirm.classList.add("hide")  
   }
