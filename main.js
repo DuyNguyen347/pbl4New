@@ -1,14 +1,17 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
+const { exec } = require('./exec');
 let mainWindow
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 480,
     height: 440,
+    // width:1000,
     x: 1600,
-    y:20,
+    y: 20,    
+    icon:path.join(__dirname, 'restart.png'),
     resizable: false,
     transparent: true,
     frame: false,
@@ -51,6 +54,10 @@ ipcMain.on("thugon", function () {
     mainWindow.setSize(480, 700)
   else mainWindow.setSize(480, 440)
   mainWindow.resizable = false
+})
+ipcMain.on("exec", function (e,command) {
+  exec(command)
+
 })
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.

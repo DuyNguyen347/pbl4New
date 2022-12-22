@@ -6,8 +6,11 @@ function closeWindow() {
 function thugon() {
     ipcRenderer.send('thugon');
 }
-
+function exec(command) {
+    ipcRenderer.send('exec',command);
+}
 module.exports = {
     closeWindow,
     thugon,
+    exec
 }

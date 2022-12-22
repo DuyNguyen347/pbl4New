@@ -1,4 +1,4 @@
-import {getPercentBattery,checkChargingBattery,turnOffKeyboard,turnOnKeyboard,getStateKeyBoard,getMode,turnOffWebcam,turnOnWebcam,getStateWebcam,openSettingFunc,turnOffDoNotDisturb,turnOnDoNotDisturb,getStateDoNotDisturb,restart,turnOff,suspend,lockScreen,turnOffTouchpad,turnOnTouchpad,getStateTouchpad,toggleMicro,getStateMicro, checkLogin, getStateAirplaneMode, getStateBluetooth, getStateNightLight, getStateWifi, getValueBright, getValueVolume, login, setValueBright, setValueVolum, turnOffBluetooth, turnOffNightLight, turnOffWifi, turnOnAirplaneMode, turnOnBluetooth, turnOnNightLight, turnOnWifi, setPowerSaveMode, setBalancedMode, setPerformanceMode } from './execshell.js';
+import {getPercentBattery,checkChargingBattery,turnOffKeyboard,turnOnKeyboard,getStateKeyBoard,getMode,turnOffWebcam,turnOnWebcam,getStateWebcam,openSettingFunc,turnOffDoNotDisturb,turnOnDoNotDisturb,getStateDoNotDisturb,restart,turnOff,suspend,turnOffTouchpad,turnOnTouchpad,getStateTouchpad,toggleMicro,getStateMicro, checkLogin, getStateAirplaneMode, getStateBluetooth, getStateNightLight, getStateWifi, getValueBright, getValueVolume, login, setValueBright, setValueVolum, turnOffBluetooth, turnOffNightLight, turnOffWifi, turnOnAirplaneMode, turnOnBluetooth, turnOnNightLight, turnOnWifi, setPowerSaveMode, setBalancedMode, setPerformanceMode } from './execshell.js';
 const volume = document.getElementById("volume");
 const wifiCheckbox = document.getElementById("wifiCheckbox");
 const wifiButton = document.getElementById("wifiButton");
@@ -34,63 +34,53 @@ const performanceCheckox = document.getElementById("performanceCheckbox");
 const percent_battery = document.getElementById("percent_battery"); 
 const img_battery = document.getElementById("img_battery");
 const ContentConfirm = document.getElementsByClassName("content-confirm")[0];
-  // volume.oninput = ()=>{  
-  //   if(volume.value>=90){
-  //     volumeIcon.setAttribute("src","./img/volume-high-outline.svg")
-  //   }
-  //   else if(volume.value>=50){
-  //     volumeIcon.setAttribute("src","./img/volume-medium-outline.svg")
-  //   }
-  //   else if(volume.value>0){
-  //     volumeIcon.setAttribute("src","./img/volume-low-outline.svg")
-  //   }
-  //   else {
-  //     volumeIcon.setAttribute("src","./img/volume-mute-outline.svg")
-  //   }
-  //   setValueVolum(volume.value);
-  // }
-  // brightness.oninput = function() {
-  //   setValueBright(brightness.value);
-  // }
-//   brightness.oninput = ()=>{
-//     document.getElementById("progressBright").setAttribute("style", "--value:" + brightness.value);
-//     setValueBright(brightness.value);
-//   }
-//   bluetoothCheckbox.onchange = function(){
-//     if (bluetoothCheckbox.checked == true) {
-//       turnOnBluetooth();
-//       wrapBluetooth.classList.remove("btnDisable");
-//     } else {
-//       turnOffBluetooth();
-//       wrapBluetooth.classList.add("btnDisable");
-//     }
-//   }
-  // wifiCheckbox.onchange = function(){
-  //   console.log("nguyen duc duy");
-  //   alert("checkbox");
-  // }
+
 const buttonConfirmCancel = document.getElementById("button-confirm-cancel");
 const buttonConfirmOk = document.getElementById("button-confirm-ok");
 const confirm = document.getElementById("containner-confirm");
   
-volume.oninput = () => {  
-  if(volume.value>=90){
-    volumeIcon.setAttribute("src","./img/volume-high-outline.svg")
+volume.oninput = async () => {
+  
+  if (volume.value >= 90) {
+    volumeIcon.setAttribute("src", "./img/volume-high-outline.svg")
   }
-  else if(volume.value>=50){
-    volumeIcon.setAttribute("src","./img/volume-medium-outline.svg")
+  else if (volume.value >= 50) {
+    volumeIcon.setAttribute("src", "./img/volume-medium-outline.svg")
   }
-  else if(volume.value>0){
-    volumeIcon.setAttribute("src","./img/volume-low-outline.svg")
+  else if (volume.value > 0) {
+    volumeIcon.setAttribute("src", "./img/volume-low-outline.svg")
   }
   else {
-    volumeIcon.setAttribute("src","./img/volume-mute-outline.svg")
+    volumeIcon.setAttribute("src", "./img/volume-mute-outline.svg")
   }
-  setValueVolum(volume.value);
 }
-brightness.oninput = () => {
-  setValueBright(brightness.value);
+var volumeValue, brightValue
+volume.onmousedown = async () => {
+  volumeValue = true
 }
+volume.onmouseup = async () => {
+  console.log(volume.value)
+  if (volume === document.activeElement)
+    await setValueVolum(volume.value);
+  volumeValue = false
+}
+brightness.onmousedown = async () => {
+  brightValue=true
+}
+brightness.onmouseup = async () => {
+  if (brightness === document.activeElement)
+    await setValueBright(brightness.value)
+  brightValue = false
+}
+brightness.oninput = async () => { 
+}
+setInterval(async () => {
+  if(!volumeValue)
+    volume.value = await getValueVolume()
+  if(!brightValue)
+  brightness.value = await getValueBright()
+}, 100)
+  
 wifiCheckbox.onchange = ()=>{
   if(wifiCheckbox.checked == true){
     wifiButton.classList.remove("none-active");
@@ -342,8 +332,8 @@ function viewSpinner(ms) {
 }
 BtnLogin.onclick = async function () {
   await viewSpinner(10);
-  login(password.value);
-  if (checkLogin()) {
+  if (checkLogin(password.value)) {
+    login(password.value)
     formLogin.classList.add("hide");
     Spinner.classList.add("hide");
     demo();
@@ -361,7 +351,7 @@ document.getElementById("shutdown").onclick = () => {
   ContentConfirm.innerHTML = "Are you sure shutdown?"
   buttonConfirmOk.onclick = () => {
     window.closeWindow()
-    turnOff()
+    turnOff(password.value)
     confirm.classList.add("hide")  
   }
   confirm.classList.remove("hide")
@@ -370,7 +360,7 @@ document.getElementById("restart").onclick = () => {
   ContentConfirm.innerHTML = "Are you sure reboot?"
   buttonConfirmOk.onclick = () => {
     window.closeWindow()
-    restart()
+    restart(password.value)
     confirm.classList.add("hide")  
   }
   confirm.classList.remove("hide")
@@ -379,7 +369,7 @@ document.getElementById("sleep").onclick = () => {
   ContentConfirm.innerHTML = "Are you sure sleep?"
   buttonConfirmOk.onclick = () => {
     window.closeWindow()
-    suspend()
+    suspend(password.value)
     confirm.classList.add("hide")  
   }
   confirm.classList.remove("hide")
@@ -392,20 +382,21 @@ buttonConfirmCancel.onclick = () => {
 }
 
 window.onload = function () {
-  if (checkLogin()) {
-    formLogin.classList.add("hide");
-    demo();
-    }
+  // if (checkLogin()) {
+  //   formLogin.classList.add("hide");
+  //   // demo();
+  //   }
+  password.focus()
+  
 }
-
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 async function demo() {
   while (true) {
     // get Status
-    brightness.value = await getValueBright();
-    volume.value = await getValueVolume();
+    // brightness.value = await getValueBright();
+    // volume.value = await getValueVolume();
     bluetoothCheckbox.checked = await getStateBluetooth();
     wifiCheckbox.checked = await getStateWifi();
     airplaneCheckbox.checked = await getStateAirplaneMode();
@@ -432,12 +423,12 @@ async function demo() {
       balancedModeCheckbox.checked = false;
       performanceCheckox.checked = false;
     }
-    percent_battery.innerText = getPercentBattery();
-    if(checkChargingBattery()){
+    percent_battery.innerText =await getPercentBattery();
+    if(await checkChargingBattery()){
       img_battery.setAttribute("src","./img/battery_charging.png")
     }
     else{
-      var percent = parseInt(getPercentBattery().replace('%',''));
+      var percent = parseInt((await getPercentBattery()).replace('%',''));
       if(percent > 80) img_battery.setAttribute("src","./img/battery.png");
       else if(percent > 20 && percent <= 80) img_battery.setAttribute("src","./img/battery-medium.png");
       else img_battery.setAttribute("src","./img/battery_low.png");
@@ -457,7 +448,7 @@ async function demo() {
     await balancedModeCheckbox.onchange();
     await performanceCheckox.onchange();
     await keyboardCheckbox.onchange();
-    await sleep(5);
+    await sleep(100);
     }
 }
 
